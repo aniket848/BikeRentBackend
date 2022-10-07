@@ -14,7 +14,7 @@ const renderer = ({ days, hours, minutes, seconds, completed, props }) => {
         alt="Cardcap"
         style={{
           height: "250px",
-          backgroundImage: `url(https://bikeadda.herokuapp.com//public/uploadImages/${props.item.image})`,
+          backgroundImage: `url(https://bikeadda.herokuapp.com/public/uploadImages/${props.item.image})`,
           backgroundSize: "cover",
           backgroundPosition: "center",
           backgroundRepeat: "no-repeat",
