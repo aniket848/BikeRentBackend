@@ -66,11 +66,7 @@ const NavBar = () => {
       return (
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="me-auto">
-            <Nav.Link>
-              <Link to="/" className={style.login}>
-                 Home
-              </Link>
-            </Nav.Link>
+            <Nav.Link onClick={()=> window.location.replace("/#home")}> Home </Nav.Link>
             <Nav.Link onClick={()=> window.location.replace("/#features")}>Features</Nav.Link>
             <Nav.Link onClick={()=> window.location.replace("/#pricing")}>Pricing</Nav.Link>
             <Nav.Link onClick={()=> window.location.replace("/#feedback")}>Feedback</Nav.Link>
