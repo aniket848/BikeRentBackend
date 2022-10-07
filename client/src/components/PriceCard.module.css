@@ -1,0 +1,52 @@
+.card-img-top{
+    width:80%;
+    height: 80%;
+    margin:auto;
+    z-index:100;
+}
+
+.priceCard{
+    width:auto;
+    margin:0 1.4rem;
+}
+
+.priceCard:hover .card-img-top{
+    overflow: hidden;
+    transform: scale(1.2);
+    transition: all .2s;
+}
+
+.card-title{
+    font-size:1.2rem;
+    font-weight: bold;
+    position:relative;
+    top:-1rem;
+    z-index:200;
+}
+
+.subTitle{
+    font-size:1.2rem;
+    font-weight: 100;
+   color: grey;
+   position:relative;
+   top:-1.2rem;
+}
+
+.list{
+    position:relative;
+    top:-2rem;
+}
+
+.knowButton{
+    margin-top:1rem;
+    text-decoration:none;
+    color:red; 
+    z-index:100;     
+}
+
+.knowButton:hover{
+    text-decoration: underline;
+    transform: scale(1.05);
+    transition: all .1s;
+    color:red;
+}

@@ -1,0 +1,47 @@
+.pricing{
+    width:100vw;
+    height:100vh;
+    position:relative;
+    text-align: center;
+    background-image: linear-gradient(to bottom right, rgba(0,0,0,.4) , rgba(0,0,0,.4)), 
+      url('https://images.pexels.com/photos/819805/pexels-photo-819805.jpeg?auto=compress&cs=tinysrgb&w=600');
+    
+     background-position: center;
+     background-size: cover;
+}
+
+.mainHeading{
+    color:#fff;
+    font-size:3rem;
+    margin:3rem 0;
+}
+
+.carousel-control-prev-icon,.carousel-control-next-icon {
+    background-color: #000;
+    margin:0 4rem;
+    display: block;
+    position:relative;
+    height:10px;
+    width:10px;
+}
+
+.carousel-control-prev-icon{
+    right:25%;
+}
+.carousel-control-next-icon{
+    left:25%;
+}
+
+.priceBox{
+    position: absolute;
+    left:50%;
+    top:50%;
+    transform: translate(-50%,-50%);
+    width:100%;
+    padding: 0 5rem;
+}
+
+.slide{
+     display: flex;
+    justify-content:space-around;
+}

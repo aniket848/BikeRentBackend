@@ -1,0 +1,56 @@
+.bg_images_login {
+    width: 100vw;
+    height: 100vh;
+    margin: 0;
+    transition: all 0.2s linear;
+    animation: anim 5s linear infinite;
+    background-repeat: no-repeat;
+    background-size:cover;
+    background-position: center;
+}
+
+@keyframes anim {
+    0%{
+        opacity:1;
+    }
+    100%{
+        opacity:1;
+    }
+}
+
+.HomePage{
+    text-align: center;
+    position: relative;
+}
+
+.text{
+    position: absolute;
+    top:50%;
+    left:50%;
+    transform: translate(-50%,-50%);
+    width:100%;
+    display: inline-block;
+}
+
+.mainHeading,.subHeading,.subText{
+    color:#fff;
+    font-style: normal;
+    font-family: sans-serif;
+}
+
+.mainHeading{
+    font-size: 4rem;
+    font-weight: bolder;
+}
+
+.subHeading{
+    font-size: 2.5rem;
+    font-weight: bold;
+}
+
+.subText{
+    font-size: 1.6rem;
+    line-height: 1.5;
+    font-style: italic;
+    font-weight: 100;
+}

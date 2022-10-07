@@ -1,0 +1,209 @@
+.thumbnail-slider-wrap {
+    margin-top: 15px;
+    height: 85px;
+  }
+  .thumbnail-slider-wrap .slick-track .slick-slide {
+    text-align: center;
+  }
+  .thumbnail-slider-wrap .slick-track .slick-slide img {
+    width: 70%;
+  }
+
+  .FullDetail{
+    width:100vw;
+    height:auto;
+    position:relative;
+    display:flex;
+    padding:3rem 5rem;
+  }
+
+ 
+  .image-cover{
+    width:100%;
+    height:25rem;
+    position: relative;
+  }
+
+  .fullDetail-image{ 
+      position: absolute;
+      width:100%;
+      height:100%;
+      overflow:hidden;  
+    }
+
+  .slick-slide-title{
+    position:relative;
+    margin-bottom: 3rem;
+  }
+
+  .DetailSlider{
+      width:70%;
+      padding:1rem;
+  }
+  .slick-prev:before,.slick-next:before{
+    color:#000;
+    background-color: #000;
+  }
+  
+  .slick-next:before{
+    position: relative;
+    left:-3rem;
+  }
+
+  .sideBar{
+      width:30%;
+      z-index:1000;
+      position:fixed;
+      right:1.1%;
+      padding:1rem;
+  }
+
+  @media(max-width:1000px){
+    .FullDetail{
+       flex-direction: column;
+       padding:1.5rem 3rem;
+    }
+    .DetailSlider{
+      width:100%;
+      padding:1rem;
+     }
+    .sideBar{
+      position: relative;
+      width:100%;
+    }
+     table, th, td {
+      width:50%;
+      border: 5px solid;
+    }
+    .table-data{
+      font-size: 1rem;
+    }
+ 
+    .overview-heading{
+      font-size: 1.2rem;
+  }
+
+  .overview-name{
+    font-size: 1.1rem;
+  }
+
+  .overview-info{
+     font-size: 1.1rem;
+  }
+
+  .overview-list{
+     padding-left:2rem;
+     margin-bottom: 1.5rem;
+  }
+  
+  .overview-item{
+    font-size: 1.1rem;
+  }
+ }
+
+
+  .overview{
+     margin-top: 6rem;
+  }
+
+  .overview-heading{
+      font-size: 1.5rem;
+      font-weight: bold;
+      margin-bottom: 3rem;
+  }
+
+  .overview-name{
+    font-size: 1.3rem;
+    font-weight:500;
+  }
+
+  .overview-info{
+     font-size: 1.3rem;
+     font-weight: 300;
+     color:rgba(0,0,0,.9);
+  }
+
+  .overview-list{
+     padding-left:3rem;
+     margin-bottom: 2rem;
+  }
+  
+  .overview-item{
+    font-size: 1.3rem;
+    font-weight: 300;
+    color:rgba(0,0,0,.9);
+  }
+
+  table, th, td {
+    width:95%;
+    border: 5px solid;
+  }
+
+  table{
+     margin-bottom: 2rem;
+  }
+
+   .table-data{
+     font-size: 1.3rem;
+   }
+
+  th, td {
+    padding: 15px;
+  }
+
+  .FullDetail-form{
+      padding:1rem 2rem;
+      border: .3rem solid #000;
+  }
+
+  .label{
+      font-size:1.1rem;
+      color:grey;
+      display:block;
+    }
+
+   .form-heading{
+      margin-bottom:1.5rem;
+   }
+
+   .form-button{
+      padding:.5rem;
+      background-color: #000;
+      color:#fff;
+      border-radius: 3px;
+      font-size:1.1rem;
+   }
+
+   .form-button:hover{
+      border: 4px solid #000;
+      background-color: #fff;
+      color:#000;
+      font-weight:500;
+   }
+
+  .inputText{
+      font-size:1.3rem;
+      font-weight: 200;
+      display: block;
+      margin-top:1.8rem;
+      margin-bottom: 1rem;
+      border:none;
+      width:96%;
+      border-bottom: 1px solid #000;
+  }
+
+  .inputText:focus{
+      outline: none;
+  }
+
+  @media(max-width:1000px){
+    .inputText{
+       font-size:1rem;
+       margin-top: 1.5rem;
+       margin-bottom: .6rem;
+       width:90%;
+    }
+    .form-button{
+       text-align: center;
+    }
+  }
