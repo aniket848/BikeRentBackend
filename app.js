@@ -37,15 +37,10 @@ socketIO.on('connection',(socket)=>{
 
 if(process.env.NODE_ENV==='production'){
       
-    app.use(express.static(path.join(__dirname1,"/client/build")));
+    app.use(express.static("/client/build"));
     app.get('*',(req,res)=>{
-        res.sendFile(path.resolve(__dirname1,"client","build","index.html"));
+        res.sendFile(path.resolve(__dirname,"client","build","index.html"));
     });
-
-}else{
-    app.get('/',(req,res)=>{
-        res.send("welcome to your new project  , Ganpati Bappa Moriya , JAI SHREE RAM");
-     });
 }
 
 // -------------------- DEPLOYMENT ------------------------//
@@ -63,6 +58,7 @@ connection.once("open",()=>{
    // console.log("Mongoose database connected");
     console.log("Setting changing streams");
     console.log(__dirname1);
+    console.log(__dirname);
     const thoughtChangeStream = connection.collection('auctions').watch({fullDocument : "updateLookup" });
 
     thoughtChangeStream.on("change",(change)=>{
