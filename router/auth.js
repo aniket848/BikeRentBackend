@@ -19,9 +19,9 @@ const storage = multer.diskStorage({
 
 const upload = multer({ storage: storage });
 
-router.get("/",(req,res)=>{
-  res.send("yeh dekh yeh vala khula");
-})
+// router.get("/",(req,res)=>{
+//   res.send("yeh dekh yeh vala khula");
+// })
 
 router.post("/addAuction", upload.single("myFile"), async (req, res) => {
   //console.log(req.file);
