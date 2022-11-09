@@ -178,7 +178,7 @@ router.post("/login", async (req, res) => {
 
 router.post("/signup", async (req, res) => {
   const { email, name, password } = req.body;
-
+   console.log("reched regiter");
   if (!email || !password || !name) {
     return res.status(422).send({ error: "Invalid Credentials" });
   }

@@ -4,8 +4,8 @@ import {Alert} from 'react-bootstrap';
 import AddAuction from "./AddAuction";
 import Card from "./Card";
 import io from 'socket.io-client';
-const socket = io.connect('https://bikeadda.herokuapp.com/');
-
+//const socket = io.connect('https://bikeadda.herokuapp.com/');
+const socket = io.connect('http://localhost:4000/');
 
 const AuctionBody = () => {
      const [data, setData] = useState([]);
