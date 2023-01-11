@@ -172,7 +172,7 @@ const UserProfile = () => {
           <ul className="list-group list-group-light">
             {auctions &&
               auctions.map((auction) => {
-                let adr = `http://localhost:4000/public/uploadImages/${auction.image}`;
+                let adr = `https://bikeadda.herokuapp.com/public/uploadImages/${auction.image}`;
 
                 return (
                   <li className="list-group-item d-flex justify-content-between align-items-center">

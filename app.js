@@ -35,18 +35,18 @@ socketIO.on('connection',(socket)=>{
 // -------------------- DEPLOYMENT ------------------------//
 
 
-// if(process.env.NODE_ENV==='production'){
+if(process.env.NODE_ENV==='production'){
       
-//     app.use(express.static(path.join(__dirname,"/client/build")));
-//     app.get('*',(req,res)=>{
-//         res.sendFile(path.resolve(__dirname1,"client","build","index.html"));
-//     });
-// }
+    app.use(express.static(path.join(__dirname,"/client/build")));
+    app.get('*',(req,res)=>{
+        res.sendFile(path.resolve(__dirname1,"client","build","index.html"));
+    });
+}
 
 // -------------------- DEPLOYMENT ------------------------//
 
-//const PORT = process.env.PORT || 4000;
-const PORT = 4000;
+const PORT = process.env.PORT || 4000;
+// const PORT = 4000;
 
 http.listen(PORT,()=>{
     console.log("server is running on port 4000");
@@ -57,9 +57,9 @@ const connection = mongoose.connection;
 
 connection.once("open",()=>{
    // console.log("Mongoose database connected");
-    console.log("Setting changing streams");
-    console.log(__dirname1);
-    console.log(__dirname);
+    // console.log("Setting changing streams");
+    // console.log(__dirname1);
+    // console.log(__dirname);
     const thoughtChangeStream = connection.collection('auctions').watch({fullDocument : "updateLookup" });
 
     thoughtChangeStream.on("change",(change)=>{
@@ -67,12 +67,12 @@ connection.once("open",()=>{
         //console.log(change.fullDocument);
         switch(change.operationType){
             case "insert":
-                console.log("insert happedned");
+                //console.log("insert happedned");
                 const auctionItem = change.fullDocument;
                 socketIO.emit("newAuction",auctionItem);
                 break;
             case "update":
-                console.log("update happedned");
+                //console.log("update happedned");
                 const updateAuction = {
                     _id:change.documentKey._id,
                     curPrice:change.fullDocument.curPrice,
@@ -81,7 +81,7 @@ connection.once("open",()=>{
                 socketIO.emit("updateAuction",updateAuction);
                 break;
             case "delete":
-                console.log("delete happedned");
+                //console.log("delete happedned");
                 socketIO.emit("deleteAuction",change.documentKey._id);
                 break;       
         }    

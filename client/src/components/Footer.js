@@ -1,6 +1,6 @@
 import 'bootstrap/dist/css/bootstrap.css';
 import './Footer.css';
-import { AiFillInstagram,AiFillGithub,AiFillFacebook,AiFillLinkedin,AiFillGoogleCircle,AiFillTwitterCircle } from "react-icons/ai";
+import { AiFillInstagram,AiFillGithub,AiFillFacebook,AiFillLinkedin,AiFillTwitterCircle } from "react-icons/ai";
 
 const Footer = ()=>{
 
