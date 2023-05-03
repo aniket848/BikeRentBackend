@@ -42,7 +42,7 @@ router.post("/addAuction", upload.single("myFile"), async (req, res) => {
   res.send({ mesg: "formdata saved" });
 });
 
-router.get("/getAuctions", async (req, res) => {
+router.get("/getAuctions",authenticate, async (req, res) => {
   //console.log("reached server");
   try {
     let data;
@@ -128,7 +128,7 @@ const deleteFile = (filePath) => {
   });
 };
 
-router.delete("/deleteAuction", async (req, res) => {
+router.delete("/deleteAuction", authenticate,async (req, res) => {
   const { auctionId, imageName } = req.body;
   await Auction.findByIdAndDelete(auctionId);
   const path = `./public/uploadImages/${imageName}`;
@@ -137,44 +137,45 @@ router.delete("/deleteAuction", async (req, res) => {
   res.send({ mesg: "auction item successfullt Deleted" });
 });
 
-router.post("/login", async (req, res) => {
-  const { email, password } = req.body;
-  let token;
+// router.post("/login", async (req, res) => {
+//   const { email, password } = req.body;
+//   let token;
 
-  if (!email || !password) {
-    return res.status(422).send({ error: "Invalid Credentials" });
-  }
-  console.log(email);
-  try {
-    let userExist = await User.findOne({ email: email });
-    //res.send(userExist);
-    if (!userExist) {
-      res.status(422).send({ error: "Invalid Email" });
-      return;
-    }
+//   if (!email || !password) {
+//     return res.status(422).send({ error: "Invalid Credentials" });
+//   }
+//   console.log(email);
+//   try {
+//     let userExist = await User.findOne({ email: email });
+//     //res.send(userExist);
+//     if (!userExist) {
+//       res.status(422).send({ error: "Invalid Email" });
+//       return;
+//     }
 
-    bcrypt.compare(password, userExist.password, async function (err, result) {
-      if (!result) {
-        res.status(422).send({ error: "Invalid Password" });
-        return;
-      } else {
-        token = await userExist.generateToken();
-        //console.log("token = ",token);
+//     bcrypt.compare(password, userExist.password, async function (err, result) {
+//       if (!result) {
+//         res.status(422).send({ error: "Invalid Password" });
+//         return;
+//       } else {
+//         token = await userExist.generateToken();
+//         console.log("token from post login = ",token);
 
-        res.cookie("jwtToken", token, {
-          expires: new Date(Date.now() + 25892000000),
-          httpOnly: true,
-          secure: false,
-        });
+//         res.cookie("jwtToken", token, {
+//           expires: new Date(Date.now() + 25892000000),
+//           httpOnly: true,
+//           secure: false,
+//         });
 
-        return res.status(200).send({ Success: "Login Successful" });
-      }
-    });
-  } catch (err) {
-    console.log(err);
-    return res.status(422).send({ error: "Server Error" });
-  }
-});
+//         console.log("auth.js token  AFTER= ",req.cookies);
+//         return res.status(200).send({ Success: "Login Successful" });
+//       }
+//     });
+//   } catch (err) {
+//     //console.log(err);
+//     return res.status(422).send({ error: "Server Error" });
+//   }
+// });
 
 router.post("/signup", async (req, res) => {
   const { email, name, password } = req.body;
@@ -206,6 +207,55 @@ router.post("/signup", async (req, res) => {
   }
 });
 
+router.post("/login", async(req, res) => {
+
+  const { email, password } = req.body;
+  let token;
+
+  if (!email || !password) {
+    return res.status(422).send({ error: "Invalid Credentials" });
+  }
+  console.log(email);
+  try {
+
+    let userExist = await User.findOne({ email: email });
+    //res.send(userExist);
+    if (!userExist) {
+      res.status(422).send({ error: "Invalid Email" });
+      return;
+    }
+
+
+    bcrypt.compare(password, userExist.password, async function (err, result) {
+      if (!result) {
+        res.status(422).send({ error: "Invalid Password" });
+        return;
+      } else {
+        token = await userExist.generateToken();
+        //console.log("token from post login = ",token);
+        //console.log("auth.js token  before= ",req.cookies);
+       res.clearCookie("bikeToken", { path: "/" });
+        //console.log("AFTER CLEARING = ",req.cookies);
+        res.cookie('bikeToken', token, {
+          maxAge: 36000000,
+          httpOnly:false
+        });
+
+        global.EMAIL = email;        
+        // console.log("auth.js token  AFTER= ",req.cookies);
+        // console.log("auth.js token  AFTER= ",req.headers.cookie);
+        return res.status(200).send({ Success: "Login Successful" });
+
+      }
+    })
+    }
+    catch(err){
+        console.log(err);
+        return res.status(422).send({ error: "Some error occured" });
+    }
+});
+
+
 router.post("/contact", authenticate, async (req, res) => {
   const { name, email, phone, location, index } = req.body;
 
@@ -229,7 +279,8 @@ router.post("/contact", authenticate, async (req, res) => {
 router.get("/logout", (req, res) => {
   try {
     console.log("reaches logout path");
-    res.clearCookie("jwtToken", { path: "/" });
+    res.clearCookie("bikeToken", { path: "/" });
+    global.EMAIL = "";
     res.status(200).send("Logout Successfully");
   } catch {
     res.status(400).send("Some error occured");

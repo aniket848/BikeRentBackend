@@ -1,18 +1,21 @@
 const jwt = require("jsonwebtoken");
 const User = require("../model/userSchema");
+const EMAIL = require("../database/info");
 
 const authenticate = async function (req, res, next) {
+ 
   try {
-    const token = req.cookies.jwtToken;
-    if (!token) {
-      console.log("NO valid user");
-      throw new Error("No user exist");
-    }
-    const verifytToken = jwt.verify(token, process.env.SECRET_KEY);
+    // console.log("from middleware = ",req.headers.cookie);
+    // const token = req.cookies.bikeToken;
+    // console.log("TOKEN====",token);
+    // if (!token) {
+    //   console.log("NO valid user");
+    //   throw new Error("No user exist");
+    // }
+    // const verifytToken = jwt.verify(token, process.env.SECRET_KEY);
 
     const userExist = await User.findOne({
-      _id: verifytToken._id,
-      "tokens.token": token,
+      email: global.EMAIL,
     });
 
     if (!userExist) {
@@ -21,7 +24,7 @@ const authenticate = async function (req, res, next) {
     } else {
       
       req.user = userExist;
-      req.token = token;
+      // req.token = token;
       req.userId = userExist._id;
 
       next();

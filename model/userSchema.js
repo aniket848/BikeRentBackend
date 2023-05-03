@@ -53,7 +53,7 @@ userSchema.methods.generateToken = async function () {
     const newToken = jwt.sign({ _id: this._id }, process.env.SECRET_KEY);
     this.tokens = this.tokens.concat({ token: newToken });
     await this.save();
-
+    // console.log("NEWTOKEN",newToken);
     return newToken;
   } catch (err) {
     console.log(err);

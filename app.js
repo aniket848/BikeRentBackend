@@ -2,21 +2,34 @@ require('dotenv').config();
 const cookieParser = require('cookie-parser');
 const express = require('express');
 const mongoose = require('mongoose');
+const bodyparser = require('body-parser');
 const path = require('path');
+const cors = require('cors');
+
+const app = express();
+
+app.use(cookieParser());
 require('./database/db');
 
 const __dirname1 = path.resolve();
 
-const app = express();
-app.use(cookieParser())
-app.use(express.json()); //our system automatically understand json data
-app.use('/public',express.static('public'));
+
+
+app.use(cors({ origin: true, credentials: true }));
+app.use(express.json());
+app.use(bodyparser.urlencoded({ extended: false }));
+app.use(bodyparser.json());
+//our system automatically understand json data
+
 
 const http = require('http').Server(app);
-const cors = require('cors');
-app.use(cors());
 
-app.use(require('./router/auth'));
+
+
+
+app.use(require('./router/auth')); 
+app.use('/public',express.static('public'));
+
 
 
 const socketIO = require('socket.io')(http,{
